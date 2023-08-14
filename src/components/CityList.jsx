@@ -1,7 +1,9 @@
 import Spinner from "./Spinner";
 import CityItem from "./CityItem";
 import styles from "./CityList.module.css";
-function CityList({ cities, isLoading }) {
+import { useCityContexts } from "../contexts/CityContexts";
+function CityList() {
+  const { cityData: cities, isLoading } = useCityContexts();
   const renderCityList = cities.map((city) => (
     <CityItem key={city.id} city={city} />
   ));

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import styles from "./City.module.css";
-
+import { useCityContexts } from "../contexts/CityContexts";
+// import BackButton from "./BackButton";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -9,16 +11,15 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
-function City({ cities }) {
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
-
+function City() {
+  const { fetchCurrentCityData, currentCity } = useCityContexts();
   const { id } = useParams();
+  useEffect(
+    function () {
+      fetchCurrentCityData(id);
+    },
+    [id]
+  );
 
   const { cityName, emoji, date, notes } = currentCity;
 
@@ -54,9 +55,7 @@ function City({ cities }) {
         </a>
       </div>
 
-      {/* <div>
-        <ButtonBack />
-      </div> */}
+      <div>{/* <BackButton /> */}</div>
     </div>
   );
 }
