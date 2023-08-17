@@ -37,13 +37,14 @@ function Map() {
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
         {renderMarker}
-        <changePosition position={[location.get("lat"), location.get("lng")]} />
+        {/* <ChangeMarkerPosition
+          position={[location.get("lat"), location.get("lng")]}
+        /> */}
       </MapContainer>
     </div>
   );
 }
-
-function changePosition({ position }) {
+function ChangeMarkerPosition({ position }) {
   const map = useMap();
   map.setView(position);
   return null;
