@@ -37,9 +37,9 @@ function Map() {
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
         {renderMarker}
-        {/* <ChangeMarkerPosition
-          position={[location.get("lat"), location.get("lng")]}
-        /> */}
+        <ChangeMarkerPosition
+          position={[location.get("lat") || 10, location.get("lng") || 20]}
+        />
       </MapContainer>
     </div>
   );
