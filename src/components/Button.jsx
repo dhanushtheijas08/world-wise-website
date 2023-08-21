@@ -3,7 +3,11 @@ function Button({ children, type, handleBtnClick }) {
   return (
     <button
       className={`${styles.btn} ${
-        type === "primary" ? styles.primary : styles.back
+        type === "primary"
+          ? styles.primary
+          : type === "back"
+          ? styles.back
+          : styles.position
       }`}
       onClick={handleBtnClick}
     >
