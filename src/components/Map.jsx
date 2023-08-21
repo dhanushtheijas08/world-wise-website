@@ -12,8 +12,9 @@ import {
 } from "react-leaflet";
 import Button from "./Button";
 import styles from "./Map.module.css";
+import { useUrlPosition } from "../hooks/useUrlPosition.js";
 function Map() {
-  const [location] = useSearchParams();
+  const [lat, lng] = useUrlPosition();
   const [mapPosition, setMapPosition] = useState([10, 20]);
   const { cityData, currentCity } = useCityContexts();
   const {
@@ -24,10 +25,10 @@ function Map() {
 
   useEffect(
     function () {
-      if (location.get("lat") === null || location.get("lng") === null) return;
-      setMapPosition([location.get("lat"), location.get("lng")]);
+      if (lat === null || lng === null) return;
+      setMapPosition([lat, lng]);
     },
-    [location]
+    [lat, lng]
   );
 
   useEffect(
